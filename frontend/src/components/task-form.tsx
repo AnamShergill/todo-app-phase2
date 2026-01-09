@@ -74,7 +74,7 @@ const TaskForm: React.FC<TaskFormProps> = ({ task, onClose }) => {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="card w-full max-w-md">
+      <div className="card w-full max-w-md bg-surface border-neon">
         <div className="p-6">
           <h2 className="text-xl font-bold mb-4 text-primary">
             {task?.id ? 'Edit Boom Task' : 'Create New Boom Task'}
@@ -83,7 +83,7 @@ const TaskForm: React.FC<TaskFormProps> = ({ task, onClose }) => {
           <form onSubmit={handleSubmit}>
             <div className="space-y-4">
               <div>
-                <label htmlFor="title" className="block text-sm font-medium text-secondary mb-1">
+                <label htmlFor="title" className="block text-sm font-medium text-muted mb-1">
                   Title *
                 </label>
                 <input
@@ -92,8 +92,8 @@ const TaskForm: React.FC<TaskFormProps> = ({ task, onClose }) => {
                   name="title"
                   value={formData.title}
                   onChange={handleChange}
-                  className={`w-full px-3 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-action ${
-                    errors.title ? 'border-danger' : 'border-dark'
+                  className={`w-full px-3 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-highlight-primary ${
+                    errors.title ? 'border-danger' : 'border-neon'
                   } input-field`}
                   placeholder="Task title"
                 />
@@ -103,7 +103,7 @@ const TaskForm: React.FC<TaskFormProps> = ({ task, onClose }) => {
               </div>
 
               <div>
-                <label htmlFor="description" className="block text-sm font-medium text-secondary mb-1">
+                <label htmlFor="description" className="block text-sm font-medium text-muted mb-1">
                   Description
                 </label>
                 <textarea
@@ -112,14 +112,14 @@ const TaskForm: React.FC<TaskFormProps> = ({ task, onClose }) => {
                   value={formData.description}
                   onChange={handleChange}
                   rows={3}
-                  className="w-full px-3 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-action input-field"
+                  className="w-full px-3 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-highlight-primary input-field"
                   placeholder="Task description (optional)"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label htmlFor="priority" className="block text-sm font-medium text-secondary mb-1">
+                  <label htmlFor="priority" className="block text-sm font-medium text-muted mb-1">
                     Priority
                   </label>
                   <select
@@ -127,7 +127,7 @@ const TaskForm: React.FC<TaskFormProps> = ({ task, onClose }) => {
                     name="priority"
                     value={formData.priority}
                     onChange={handleChange}
-                    className="w-full px-3 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-action input-field"
+                    className="w-full px-3 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-highlight-primary input-field"
                   >
                     <option value="low">Low</option>
                     <option value="medium">Medium</option>
@@ -136,7 +136,7 @@ const TaskForm: React.FC<TaskFormProps> = ({ task, onClose }) => {
                 </div>
 
                 <div>
-                  <label htmlFor="due_date" className="block text-sm font-medium text-secondary mb-1">
+                  <label htmlFor="due_date" className="block text-sm font-medium text-muted mb-1">
                     Due Date
                   </label>
                   <input
@@ -145,7 +145,7 @@ const TaskForm: React.FC<TaskFormProps> = ({ task, onClose }) => {
                     name="due_date"
                     value={formData.due_date}
                     onChange={handleChange}
-                    className="w-full px-3 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-action input-field"
+                    className="w-full px-3 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-highlight-primary input-field"
                   />
                 </div>
               </div>
@@ -155,14 +155,14 @@ const TaskForm: React.FC<TaskFormProps> = ({ task, onClose }) => {
               <button
                 type="button"
                 onClick={onClose}
-                className="px-4 py-2 rounded-xl text-sm font-medium text-secondary border border-dark bg-surface-dark hover:bg-hover-surface focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-action transition-all duration-200"
+                className="px-4 py-2 rounded-xl text-sm font-medium text-muted border border-neon bg-surface hover:bg-opacity-10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-highlight-primary transition-all duration-200 shadow-neon-cyan"
               >
                 Cancel
               </button>
               <button
                 type="submit"
                 disabled={isLoading}
-                className="px-4 py-2 rounded-xl text-sm font-medium text-white bg-primary-action hover:bg-primary-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-action disabled:opacity-50 transition-all duration-200 transform hover:-translate-y-0.5"
+                className="px-4 py-2 rounded-xl text-sm font-medium text-white bg-highlight-primary hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-highlight-primary disabled:opacity-50 transition-all duration-200 transform hover:-translate-y-0.5 shadow-neon-purple"
               >
                 {isLoading ? 'Saving...' : (task?.id ? 'Update Boom Task' : 'Create Boom Task')}
               </button>

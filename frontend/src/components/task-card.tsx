@@ -44,15 +44,15 @@ const TaskCard: React.FC<TaskCardProps> = ({ task, onEdit }) => {
       case 'high': return 'bg-danger/20 text-danger';
       case 'medium': return 'bg-warning/20 text-warning';
       case 'low': return 'bg-success/20 text-success';
-      default: return 'bg-secondary/20 text-secondary';
+      default: return 'bg-muted/20 text-muted';
     }
   };
 
   return (
     <div className={`card p-4 mb-3 transition-all duration-200 ${
       task.completed
-        ? 'opacity-75 border-success/30'
-        : 'hover:border-primary-action/50'
+        ? 'opacity-75 border-success/30 glow-success'
+        : 'hover:border-highlight-primary/50 hover:shadow-neon-purple-intense'
     }`}>
       <div className="flex items-start justify-between">
         <div className="flex items-start space-x-3 flex-1 min-w-0">
@@ -60,17 +60,17 @@ const TaskCard: React.FC<TaskCardProps> = ({ task, onEdit }) => {
             type="checkbox"
             checked={task.completed}
             onChange={handleToggleCompletion}
-            className="mt-1 h-5 w-5 rounded border-border-dark text-primary-action focus:ring-primary-action cursor-pointer bg-surface-dark border-dark"
+            className="mt-1 h-5 w-5 rounded border-border text-highlight-primary focus:ring-highlight-primary cursor-pointer bg-surface border-neon"
           />
           <div className="flex-1 min-w-0">
             <h3 className={`font-medium truncate ${
-              task.completed ? 'line-through text-secondary' : 'text-primary'
+              task.completed ? 'line-through text-muted' : 'text-primary'
             }`}>
               {task.title}
             </h3>
             {task.description && (
               <p className={`mt-1 text-sm truncate ${
-                task.completed ? 'text-muted' : 'text-secondary'
+                task.completed ? 'text-muted' : 'text-muted'
               }`}>
                 {task.description}
               </p>
@@ -82,7 +82,7 @@ const TaskCard: React.FC<TaskCardProps> = ({ task, onEdit }) => {
                 </span>
               )}
               {task.due_date && (
-                <span className="text-xs text-secondary">
+                <span className="text-xs text-muted">
                   Due: {formatDate(task.due_date)}
                 </span>
               )}
@@ -92,14 +92,14 @@ const TaskCard: React.FC<TaskCardProps> = ({ task, onEdit }) => {
         <div className="flex space-x-2 ml-2">
           <button
             onClick={() => onEdit(task)}
-            className="p-1.5 rounded-md text-secondary hover:bg-hover-surface hover:text-primary transition-colors"
+            className="p-1.5 rounded-md text-muted hover:bg-surface hover:text-primary transition-colors shadow-neon-cyan"
             aria-label="Edit task"
           >
             <Edit3 size={16} />
           </button>
           <button
             onClick={handleDelete}
-            className="p-1.5 rounded-md text-secondary hover:bg-danger/10 hover:text-danger transition-colors"
+            className="p-1.5 rounded-md text-muted hover:bg-danger/10 hover:text-danger transition-colors shadow-neon-red glow-danger"
             aria-label="Delete task"
           >
             <Trash2 size={16} />

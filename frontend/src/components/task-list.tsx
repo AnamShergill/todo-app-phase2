@@ -28,14 +28,14 @@ const TaskList: React.FC = () => {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary-action"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-highlight-primary"></div>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="bg-danger/10 border-l-4 border-danger p-4 card">
+      <div className="bg-danger/10 border-l-4 border-danger p-4 card glow-danger">
         <div className="flex">
           <div className="flex-shrink-0">
             <svg className="h-5 w-5 text-danger" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -56,7 +56,7 @@ const TaskList: React.FC = () => {
         <h2 className="text-2xl font-bold text-primary">My Boom Tasks</h2>
         <button
           onClick={handleCreate}
-          className="inline-flex items-center px-4 py-2 rounded-xl text-sm font-medium text-white bg-primary-action hover:bg-primary-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-action transition-all duration-200 transform hover:-translate-y-0.5"
+          className="inline-flex items-center px-4 py-2 rounded-xl text-sm font-medium text-white bg-highlight-primary hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-highlight-primary transition-all duration-200 transform hover:-translate-y-0.5 shadow-neon-purple"
         >
           Create Boom Task
         </button>
@@ -64,15 +64,15 @@ const TaskList: React.FC = () => {
 
       {tasks.length === 0 ? (
         <div className="text-center py-12">
-          <svg className="mx-auto h-12 w-12 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="mx-auto h-12 w-12 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
           </svg>
           <h3 className="mt-2 text-sm font-medium text-primary">No boom tasks yet</h3>
-          <p className="mt-1 text-sm text-secondary">Explode your productivity by creating your first task.</p>
+          <p className="mt-1 text-sm text-muted">Explode your productivity by creating your first task.</p>
           <div className="mt-6">
             <button
               onClick={handleCreate}
-              className="inline-flex items-center px-4 py-2 rounded-xl text-sm font-medium text-white bg-primary-action hover:bg-primary-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-action transition-all duration-200 transform hover:-translate-y-0.5"
+              className="inline-flex items-center px-4 py-2 rounded-xl text-sm font-medium text-white bg-highlight-primary hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-highlight-primary transition-all duration-200 transform hover:-translate-y-0.5 shadow-neon-purple"
             >
               Create Boom Task
             </button>
@@ -81,7 +81,7 @@ const TaskList: React.FC = () => {
       ) : (
         <div>
           <div className="mb-4 flex justify-between items-center">
-            <p className="text-secondary">{tasks.length} boom task{tasks.length !== 1 ? 's' : ''}</p>
+            <p className="text-muted">{tasks.length} boom task{tasks.length !== 1 ? 's' : ''}</p>
           </div>
           <div className="space-y-3">
             {tasks.map(task => (

@@ -18,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark">
-      <body className={`${inter.className} bg-midnight text-primary min-h-screen`}>
+      <body className={`${inter.className} bg-app text-primary min-h-screen`}>
         <AuthProvider>
           <TaskProvider>
             {children}
