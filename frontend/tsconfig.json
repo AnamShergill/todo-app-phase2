@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "ignoreDeprecations": "6.0", // ✅ suppress baseUrl deprecation warning
+     
     "target": "es6",
     "lib": [
       "dom",
@@ -19,6 +19,7 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "ignoreDeprecations": "6.0",
     "baseUrl": "src", // still needed for @/ imports
     "paths": {
       "@/*": [
