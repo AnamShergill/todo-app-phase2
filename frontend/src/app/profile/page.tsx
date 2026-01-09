@@ -17,8 +17,8 @@ export default function ProfilePage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+      <div className="min-h-screen flex items-center justify-center bg-app">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-highlight-primary"></div>
       </div>
     );
   }
@@ -28,29 +28,29 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-app">
       <Header />
       <main className="py-6">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white shadow overflow-hidden sm:rounded-lg">
-            <div className="px-4 py-5 sm:px-6 border-b border-gray-200">
-              <h3 className="text-lg leading-6 font-medium text-gray-900">Profile Information</h3>
-              <p className="mt-1 text-sm text-gray-500">Manage your account information</p>
+          <div className="card bg-surface border-neon">
+            <div className="px-4 py-5 sm:px-6 border-b border-neon">
+              <h3 className="text-lg leading-6 font-medium text-primary">Profile Information</h3>
+              <p className="mt-1 text-sm text-muted">Manage your account information</p>
             </div>
             <div className="px-4 py-5 sm:p-6">
               {user && (
                 <div className="grid grid-cols-1 gap-6">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700">Name</label>
-                    <div className="mt-1 text-gray-900">{user.name}</div>
+                    <label className="block text-sm font-medium text-muted">Name</label>
+                    <div className="mt-1 text-primary">{user.name}</div>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700">Email</label>
-                    <div className="mt-1 text-gray-900">{user.email}</div>
+                    <label className="block text-sm font-medium text-muted">Email</label>
+                    <div className="mt-1 text-primary">{user.email}</div>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700">Account ID</label>
-                    <div className="mt-1 text-gray-900">#{user.id}</div>
+                    <label className="block text-sm font-medium text-muted">Account ID</label>
+                    <div className="mt-1 text-primary">#{user.id}</div>
                   </div>
                 </div>
               )}

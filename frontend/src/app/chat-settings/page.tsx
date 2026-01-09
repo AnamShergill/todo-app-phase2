@@ -17,8 +17,8 @@ export default function ChatSettingsPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+      <div className="min-h-screen flex items-center justify-center bg-app">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-highlight-primary"></div>
       </div>
     );
   }
@@ -28,25 +28,25 @@ export default function ChatSettingsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-app">
       <Header />
       <main className="py-6">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white shadow overflow-hidden sm:rounded-lg">
-            <div className="px-4 py-5 sm:px-6 border-b border-gray-200">
-              <h3 className="text-lg leading-6 font-medium text-gray-900">Chat Settings</h3>
-              <p className="mt-1 text-sm text-gray-500">Configure your chat assistant preferences</p>
+          <div className="card bg-surface border-neon">
+            <div className="px-4 py-5 sm:px-6 border-b border-neon">
+              <h3 className="text-lg leading-6 font-medium text-primary">Chat Settings</h3>
+              <p className="mt-1 text-sm text-muted">Configure your chat assistant preferences</p>
             </div>
             <div className="px-4 py-5 sm:p-6">
               <div className="space-y-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h4 className="text-base font-medium text-gray-900">Enable Chat Assistant</h4>
-                    <p className="text-sm text-gray-500">Allow the chatbot to help manage your tasks</p>
+                    <h4 className="text-base font-medium text-primary">Enable Chat Assistant</h4>
+                    <p className="text-sm text-muted">Allow the chatbot to help manage your tasks</p>
                   </div>
                   <button
                     type="button"
-                    className="bg-blue-500 relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                    className="bg-highlight-primary relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-highlight-primary"
                     role="switch"
                     aria-checked="true"
                   >
@@ -59,12 +59,12 @@ export default function ChatSettingsPage() {
 
                 <div className="flex items-center justify-between">
                   <div>
-                    <h4 className="text-base font-medium text-gray-900">Auto-respond to new tasks</h4>
-                    <p className="text-sm text-gray-500">Get chat notifications when tasks are created</p>
+                    <h4 className="text-base font-medium text-primary">Auto-respond to new tasks</h4>
+                    <p className="text-sm text-muted">Get chat notifications when tasks are created</p>
                   </div>
                   <button
                     type="button"
-                    className="bg-gray-200 relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                    className="bg-muted relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-highlight-primary"
                     role="switch"
                     aria-checked="false"
                   >
@@ -77,12 +77,12 @@ export default function ChatSettingsPage() {
 
                 <div className="flex items-center justify-between">
                   <div>
-                    <h4 className="text-base font-medium text-gray-900">Daily task summaries</h4>
-                    <p className="text-sm text-gray-500">Receive daily summaries of your tasks via chat</p>
+                    <h4 className="text-base font-medium text-primary">Daily task summaries</h4>
+                    <p className="text-sm text-muted">Receive daily summaries of your tasks via chat</p>
                   </div>
                   <button
                     type="button"
-                    className="bg-gray-200 relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                    className="bg-muted relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-highlight-primary"
                     role="switch"
                     aria-checked="false"
                   >
@@ -94,16 +94,16 @@ export default function ChatSettingsPage() {
                 </div>
 
                 <div className="pt-4">
-                  <h4 className="text-base font-medium text-gray-900">Chat Preferences</h4>
+                  <h4 className="text-base font-medium text-primary">Chat Preferences</h4>
                   <div className="mt-4 space-y-4">
                     <div>
-                      <label htmlFor="timezone" className="block text-sm font-medium text-gray-700">
+                      <label htmlFor="timezone" className="block text-sm font-medium text-muted">
                         Timezone
                       </label>
                       <select
                         id="timezone"
                         name="timezone"
-                        className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md"
+                        className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-neon focus:outline-none focus:ring-highlight-primary focus:border-highlight-primary sm:text-sm rounded-md input-field"
                       >
                         <option>(GMT-12:00) International Date Line West</option>
                         <option>(GMT-11:00) Midway Island, Samoa</option>
@@ -118,13 +118,13 @@ export default function ChatSettingsPage() {
                     </div>
 
                     <div>
-                      <label htmlFor="language" className="block text-sm font-medium text-gray-700">
+                      <label htmlFor="language" className="block text-sm font-medium text-muted">
                         Language
                       </label>
                       <select
                         id="language"
                         name="language"
-                        className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md"
+                        className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-neon focus:outline-none focus:ring-highlight-primary focus:border-highlight-primary sm:text-sm rounded-md input-field"
                       >
                         <option>English</option>
                         <option>Spanish</option>

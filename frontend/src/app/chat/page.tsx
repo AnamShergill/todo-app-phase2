@@ -18,8 +18,8 @@ export default function ChatPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+      <div className="min-h-screen flex items-center justify-center bg-app">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-highlight-primary"></div>
       </div>
     );
   }
@@ -29,14 +29,14 @@ export default function ChatPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-app">
       <Header />
       <main className="py-6">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white shadow overflow-hidden sm:rounded-lg">
-            <div className="px-4 py-5 sm:px-6 border-b border-gray-200">
-              <h3 className="text-lg leading-6 font-medium text-gray-900">Task Assistant Chat</h3>
-              <p className="mt-1 text-sm text-gray-500">Chat with your AI task assistant</p>
+          <div className="card bg-surface border-neon">
+            <div className="px-4 py-5 sm:px-6 border-b border-neon">
+              <h3 className="text-lg leading-6 font-medium text-primary">Task Assistant Chat</h3>
+              <p className="mt-1 text-sm text-muted">Chat with your AI task assistant</p>
             </div>
             <div className="p-6">
               <ChatInterface />

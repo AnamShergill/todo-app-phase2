@@ -44,7 +44,7 @@ const RegisterForm: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-midnight py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex items-center justify-center bg-app py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div>
           <h2 className="mt-6 text-center text-3xl font-extrabold text-primary">
@@ -53,7 +53,7 @@ const RegisterForm: React.FC = () => {
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           {error && (
-            <div className="rounded-md bg-danger/10 p-4 card">
+            <div className="rounded-md bg-danger/10 p-4 card glow-danger">
               <div className="flex">
                 <div className="flex-shrink-0">
                   <svg className="h-5 w-5 text-danger" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -69,7 +69,7 @@ const RegisterForm: React.FC = () => {
 
           <div className="space-y-4">
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-secondary mb-1">
+              <label htmlFor="name" className="block text-sm font-medium text-muted mb-1">
                 Full Name
               </label>
               <input
@@ -80,12 +80,12 @@ const RegisterForm: React.FC = () => {
                 required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="input-field w-full px-3 py-2 placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-action sm:text-sm"
+                className="input-field w-full px-3 py-2 placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-highlight-primary sm:text-sm"
                 placeholder="Full Name"
               />
             </div>
             <div>
-              <label htmlFor="email-address" className="block text-sm font-medium text-secondary mb-1">
+              <label htmlFor="email-address" className="block text-sm font-medium text-muted mb-1">
                 Email address
               </label>
               <input
@@ -96,12 +96,12 @@ const RegisterForm: React.FC = () => {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="input-field w-full px-3 py-2 placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-action sm:text-sm"
+                className="input-field w-full px-3 py-2 placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-highlight-primary sm:text-sm"
                 placeholder="Email address"
               />
             </div>
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-secondary mb-1">
+              <label htmlFor="password" className="block text-sm font-medium text-muted mb-1">
                 Password
               </label>
               <input
@@ -112,12 +112,12 @@ const RegisterForm: React.FC = () => {
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="input-field w-full px-3 py-2 placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-action sm:text-sm"
+                className="input-field w-full px-3 py-2 placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-highlight-primary sm:text-sm"
                 placeholder="Password"
               />
             </div>
             <div>
-              <label htmlFor="confirm-password" className="block text-sm font-medium text-secondary mb-1">
+              <label htmlFor="confirm-password" className="block text-sm font-medium text-muted mb-1">
                 Confirm Password
               </label>
               <input
@@ -128,7 +128,7 @@ const RegisterForm: React.FC = () => {
                 required
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                className="input-field w-full px-3 py-2 placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-action sm:text-sm"
+                className="input-field w-full px-3 py-2 placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-highlight-primary sm:text-sm"
                 placeholder="Confirm Password"
               />
             </div>
@@ -136,7 +136,7 @@ const RegisterForm: React.FC = () => {
 
           <div className="flex items-center justify-between">
             <div className="text-sm">
-              <Link href="/login" className="font-medium text-primary-action hover:text-primary-hover">
+              <Link href="/login" className="font-medium text-highlight-primary hover:text-highlight-secondary">
                 Already have an account? Sign in
               </Link>
             </div>
@@ -146,7 +146,7 @@ const RegisterForm: React.FC = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full flex justify-center py-2 px-4 rounded-xl text-sm font-medium text-white bg-primary-action hover:bg-primary-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-action disabled:opacity-50 transition-all duration-200 transform hover:-translate-y-0.5"
+              className="w-full flex justify-center py-2 px-4 rounded-xl text-sm font-medium text-white bg-highlight-primary hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-highlight-primary disabled:opacity-50 transition-all duration-200 transform hover:-translate-y-0.5 shadow-neon-purple"
             >
               {loading ? 'Creating account...' : 'Sign up'}
             </button>
