@@ -1,0 +1,119 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --midnight-bg: 15, 23, 42;
+  --surface-dark: 17, 24, 39;
+  --hover-surface: 31, 41, 51;
+  --border-dark: 39, 52, 73;
+  --text-primary: 229, 231, 235;
+  --text-secondary: 156, 163, 175;
+  --text-muted: 107, 114, 128;
+  --primary-action: 99, 102, 241;
+  --primary-hover: 129, 140, 248;
+  --success: 16, 185, 129;
+  --warning: 245, 158, 11;
+  --danger: 239, 68, 68;
+}
+
+body {
+  color: rgb(var(--text-primary));
+  background-color: rgb(var(--midnight-bg));
+  min-height: 100vh;
+}
+
+/* Midnight Graphite Theme Base Styles */
+.bg-midnight {
+  background-color: rgb(var(--midnight-bg));
+}
+
+.bg-surface-dark {
+  background-color: rgb(var(--surface-dark));
+}
+
+.text-primary {
+  color: rgb(var(--text-primary));
+}
+
+.text-secondary {
+  color: rgb(var(--text-secondary));
+}
+
+.border-dark {
+  border-color: rgb(var(--border-dark));
+}
+
+.hover-surface {
+  background-color: rgb(var(--hover-surface));
+}
+
+.primary-action {
+  background-color: rgb(var(--primary-action));
+}
+
+.primary-hover {
+  background-color: rgb(var(--primary-hover));
+}
+
+.success {
+  color: rgb(var(--success));
+}
+
+.warning {
+  color: rgb(var(--warning));
+}
+
+.danger {
+  color: rgb(var(--danger));
+}
+
+/* Common component styles */
+.card {
+  background-color: rgb(var(--surface-dark));
+  border: 1px solid rgb(var(--border-dark));
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.input-field {
+  background-color: rgb(var(--surface-dark));
+  border: 1px solid rgb(var(--border-dark));
+  color: rgb(var(--text-primary));
+  border-radius: 0.75rem;
+  padding: 0.5rem 1rem;
+  transition: all 0.2s ease;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: rgb(var(--primary-action));
+  box-shadow: 0 0 0 3px rgba(var(--primary-action), 0.1);
+}
+
+.button-primary {
+  background-color: rgb(var(--primary-action));
+  color: white;
+  border: none;
+  border-radius: 0.75rem;
+  padding: 0.5rem 1rem;
+  transition: all 0.2s ease;
+}
+
+.button-primary:hover {
+  background-color: rgb(var(--primary-hover));
+  transform: translateY(-1px);
+}
+
+.button-secondary {
+  background-color: transparent;
+  color: rgb(var(--text-secondary));
+  border: 1px solid rgb(var(--border-dark));
+  border-radius: 0.75rem;
+  padding: 0.5rem 1rem;
+  transition: all 0.2s ease;
+}
+
+.button-secondary:hover {
+  background-color: rgb(var(--hover-surface));
+}
