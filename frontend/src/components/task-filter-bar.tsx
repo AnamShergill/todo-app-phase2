@@ -28,17 +28,17 @@ const TaskFilterBar: React.FC = () => {
   };
 
   return (
-    <div className="card p-4 mb-6">
+    <div className="card p-4 mb-6 bg-surface border-neon">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div>
-          <label htmlFor="status" className="block text-sm font-medium text-secondary mb-1">
+          <label htmlFor="status" className="block text-sm font-medium text-muted mb-1">
             Status
           </label>
           <select
             id="status"
             value={filters.status}
             onChange={(e) => handleFilterChange('status', e.target.value)}
-            className="w-full px-3 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-action input-field"
+            className="w-full px-3 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-highlight-primary input-field"
           >
             <option value="all">All Tasks</option>
             <option value="completed">Completed</option>
@@ -47,14 +47,14 @@ const TaskFilterBar: React.FC = () => {
         </div>
 
         <div>
-          <label htmlFor="priority" className="block text-sm font-medium text-secondary mb-1">
+          <label htmlFor="priority" className="block text-sm font-medium text-muted mb-1">
             Priority
           </label>
           <select
             id="priority"
             value={filters.priority}
             onChange={(e) => handleFilterChange('priority', e.target.value)}
-            className="w-full px-3 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-action input-field"
+            className="w-full px-3 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-highlight-primary input-field"
           >
             <option value="">All Priorities</option>
             <option value="low">Low</option>
@@ -64,14 +64,14 @@ const TaskFilterBar: React.FC = () => {
         </div>
 
         <div>
-          <label htmlFor="sort" className="block text-sm font-medium text-secondary mb-1">
+          <label htmlFor="sort" className="block text-sm font-medium text-muted mb-1">
             Sort By
           </label>
           <select
             id="sort"
             value={filters.sort}
             onChange={(e) => handleFilterChange('sort', e.target.value)}
-            className="w-full px-3 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-action input-field"
+            className="w-full px-3 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-highlight-primary input-field"
           >
             <option value="created">Created Date</option>
             <option value="due_date">Due Date</option>
