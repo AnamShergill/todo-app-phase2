@@ -1,10 +1,10 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
-import { useTask } from '@/context/task-context';
-import { useAuth } from '@/context/auth-context';
+import { useTask } from '../context/task-context';
+import { useAuth } from '../context/auth-context';
 import { Send, Bot, User } from 'lucide-react';
-import api from '@/lib/api';
+import api from '../lib/api';
 
 interface Message {
   id: string;
