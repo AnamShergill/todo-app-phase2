@@ -2,7 +2,8 @@
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { useRouter } from 'next/navigation';
-import axios from 'axios';
+import api from '@/lib/api';
+import { jwtAuth } from '@/lib/auth';
 
 interface User {
   id: number;
@@ -36,9 +37,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     if (storedToken && storedUser) {
       setToken(storedToken);
       setUser(JSON.parse(storedUser));
-
-      // Set default axios header
-      axios.defaults.headers.common['Authorization'] = `Bearer ${storedToken}`;
     }
 
     setLoading(false);
@@ -46,27 +44,16 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const login = async (email: string, password: string) => {
     try {
-      // Note: In a real implementation, we would use Better Auth here
-      // For now, simulating a login with the backend API
-      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/login`, {
-        email,
-        password,
-      });
+      // Use the JWT auth function to maintain compatibility with our backend
+      const result = await jwtAuth.signIn(email, password);
 
-      const { token, user } = response.data.data;
-
-      setToken(token);
-      setUser(user);
-      localStorage.setItem('authToken', token);
-      localStorage.setItem('user', JSON.stringify(user));
-
-      // Set default axios header
-      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      setToken(result.token);
+      setUser(result.user);
 
       router.push('/dashboard');
     } catch (error: any) {
-      if (error.response) {
-        throw new Error(error.response.data.error || 'Login failed');
+      if (error.message.includes('credentials')) {
+        throw new Error(error.message || 'Login failed');
       } else {
         throw new Error('Network error. Please try again.');
       }
@@ -75,42 +62,22 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const register = async (email: string, password: string, name: string) => {
     try {
-      // Note: In a real implementation, we would use Better Auth here
-      // For now, simulating a registration with the backend API
-      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/register`, {
-        email,
-        password,
-        name,
-      });
+      // Use the JWT auth function to maintain compatibility with our backend
+      const result = await jwtAuth.signUp(email, password, name);
 
-      const { token, user } = response.data.data;
-
-      setToken(token);
-      setUser(user);
-      localStorage.setItem('authToken', token);
-      localStorage.setItem('user', JSON.stringify(user));
-
-      // Set default axios header
-      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      setToken(result.token);
+      setUser(result.user);
 
       router.push('/dashboard');
     } catch (error: any) {
-      if (error.response) {
-        throw new Error(error.response.data.error || 'Registration failed');
-      } else {
-        throw new Error('Network error. Please try again.');
-      }
+      throw new Error(error.message || 'Registration failed');
     }
   };
 
   const logout = () => {
     setToken(null);
     setUser(null);
-    localStorage.removeItem('authToken');
-    localStorage.removeItem('user');
-
-    // Remove axios header
-    delete axios.defaults.headers.common['Authorization'];
+    jwtAuth.signOut();
 
     router.push('/login');
   };

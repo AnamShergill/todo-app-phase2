@@ -1,125 +1,167 @@
-# TodoBoom - Explode your productivity. One task at a time.
+# TodoBoom - Full-Stack Todo Application
 
-A hackathon-ready todo application that explodes your productivity with authentication and AI-powered chatbot functionality.
+TodoBoom is a modern full-stack todo application built with Next.js, FastAPI, Better Auth, and Neon PostgreSQL.
 
 ## Tech Stack
 
-- **Frontend**: Next.js 14+, TypeScript, Tailwind CSS
-- **Backend**: FastAPI, SQLModel
-- **Database**: PostgreSQL (Neon-compatible)
-- **Authentication**: JWT-based with Better Auth concepts
-- **Chatbot**: Natural language processing for task management
+- **Frontend**: Next.js 14 (App Router, TypeScript, Tailwind CSS)
+- **Backend**: FastAPI (Python)
+- **Authentication**: Better Auth + JWT
+- **Database**: Neon PostgreSQL (with SQLModel)
+- **Deployment**: Vercel (frontend), Render (backend)
 
-## Prerequisites
+## Features
 
-- Node.js 18+
-- Python 3.9+
-- PostgreSQL (or Neon account)
-
-## Running the Application
-
-### Backend Setup
-
-1. Navigate to the backend directory:
-   ```bash
-   cd backend
-   ```
-
-2. Create and activate a virtual environment:
-   ```bash
-   python -m venv venv
-   # On Windows:
-   venv\Scripts\activate
-   # On macOS/Linux:
-   source venv/bin/activate
-   ```
-
-3. Install Python dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-4. Set up environment variables:
-   ```bash
-   cp .env.example .env
-   # Edit .env with your database credentials and secret keys
-   ```
-
-5. Run the backend server:
-   ```bash
-   uvicorn main:app --reload
-   ```
-   The backend will be available at `http://localhost:8000`
-
-### Frontend Setup
-
-1. Navigate to the project root:
-   ```bash
-   cd ..
-   ```
-
-2. Install Node.js dependencies:
-   ```bash
-   cd frontend
-   npm install
-   ```
-
-3. Set up environment variables:
-   ```bash
-   # Create .env.local file in the frontend directory
-   echo "NEXT_PUBLIC_API_BASE_URL=http://localhost:8000" > .env.local
-   ```
-
-4. Run the frontend development server:
-   ```bash
-   npm run dev
-   ```
-   The frontend will be available at `http://localhost:3000`
+- User authentication and authorization
+- Create, read, update, and delete tasks
+- Task filtering and sorting
+- Responsive design for all devices
+- JWT-based authentication with refresh tokens
 
 ## Project Structure
 
 ```
-backend/
-├── main.py                 # Main FastAPI application
-├── src/
-│   ├── api/               # API routes (auth, tasks, chatbot)
-│   ├── database/          # Database configuration
-│   ├── models/            # SQLModel database models
-│   ├── schemas/           # Pydantic request/response schemas
-│   └── services/          # Business logic services
-└── requirements.txt
-
-frontend/
-├── src/
-│   ├── app/               # Next.js App Router pages
-│   ├── components/        # Reusable UI components
-│   ├── context/           # React context providers
-│   └── lib/              # Utility functions and API client
-├── package.json
-└── next.config.js
+.
+├── frontend/                 # Next.js frontend application
+│   ├── src/
+│   │   ├── app/             # App Router pages
+│   │   ├── components/      # Reusable UI components
+│   │   ├── context/         # React context providers
+│   │   ├── lib/            # Utility functions and API clients
+│   │   └── styles/         # Global styles
+│   ├── public/             # Static assets
+│   ├── next.config.js      # Next.js configuration
+│   └── package.json
+├── backend/                # FastAPI backend application
+│   ├── src/
+│   │   ├── api/           # API route handlers
+│   │   ├── database/      # Database configuration
+│   │   ├── middleware/    # Middleware functions
+│   │   ├── models/        # Database models
+│   │   ├── schemas/       # Pydantic schemas
+│   │   └── services/      # Business logic
+│   ├── main.py            # Main application entry point
+│   ├── requirements.txt   # Python dependencies
+│   └── .env.example       # Environment variable template
+├── README.md              # This file
+└── CLAUDE.md              # Project instructions
 ```
 
-## API Documentation
+## Setup Instructions
 
-After starting the backend, API documentation is available at:
-- `http://localhost:8000/docs` - Interactive API documentation (Swagger UI)
-- `http://localhost:8000/redoc` - Alternative API documentation (ReDoc)
+### Frontend Setup
 
-## Features
+1. Navigate to the frontend directory:
+```bash
+cd frontend
+```
 
-- **Authentication**: Secure JWT-based user authentication
-- **Task Management**: Full CRUD operations for boom tasks
-- **AI Assistant**: Natural language interface for exploding productivity
-- **Responsive UI**: Works on desktop, tablet, and mobile devices
-- **User Isolation**: Each user sees only their own tasks
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Copy the environment file and update the values:
+```bash
+cp .env.local.example .env.local
+```
+
+4. Start the development server:
+```bash
+npm run dev
+```
+
+The frontend will be available at http://localhost:3000
+
+### Backend Setup
+
+1. Navigate to the backend directory:
+```bash
+cd backend
+```
+
+2. Install Python dependencies:
+```bash
+pip install -r requirements.txt
+```
+
+3. Copy the environment file and update the values:
+```bash
+cp .env.example .env
+```
+
+4. Start the development server:
+```bash
+uvicorn main:app --reload
+```
+
+The backend will be available at http://localhost:8000
 
 ## Environment Variables
 
-### Backend (.env)
-- `DATABASE_URL` - PostgreSQL connection string
-- `SECRET_KEY` - JWT secret key
-- `ALGORITHM` - JWT algorithm (default: HS256)
-- `ACCESS_TOKEN_EXPIRE_MINUTES` - Token expiration time
-
 ### Frontend (.env.local)
-- `NEXT_PUBLIC_API_BASE_URL` - Backend API base URL (default: http://localhost:8000)
+- `NEXT_PUBLIC_API_BASE_URL` - Backend API base URL (e.g., http://localhost:8000)
+- `NEXT_PUBLIC_BETTER_AUTH_URL` - Better Auth base URL (e.g., http://localhost:8000)
+
+### Backend (.env)
+- `DATABASE_URL` - Database connection string
+- `SECRET_KEY` - Secret key for JWT signing
+- `ALGORITHM` - JWT algorithm (default: HS256)
+- `ACCESS_TOKEN_EXPIRE_MINUTES` - JWT expiration time in minutes
+
+## Deployment
+
+### Frontend (Vercel)
+
+1. Connect your GitHub repository to Vercel
+2. Set the following environment variables in Vercel dashboard:
+   - `NEXT_PUBLIC_API_BASE_URL`: Your backend API URL
+   - `NEXT_PUBLIC_BETTER_AUTH_URL`: Your backend API URL
+3. Set the build command to `npm run build`
+4. Set the output directory to `.next`
+
+### Backend (Render)
+
+1. Create a new Web Service on Render
+2. Connect your GitHub repository
+3. Set the runtime to Python
+4. Set the build command to `pip install -r requirements.txt`
+5. Set the start command to `uvicorn main:app --host 0.0.0.0 --port $PORT`
+6. Add environment variables in Render dashboard:
+   - `SECRET_KEY`: A strong random secret key
+   - `DATABASE_URL`: Your PostgreSQL database URL
+   - `ALGORITHM`: Algorithm for JWT (default: HS256)
+   - `ACCESS_TOKEN_EXPIRE_MINUTES`: JWT expiration time
+
+Alternatively, use the provided `render.yaml` file for automated deployment.
+
+## API Endpoints
+
+### Authentication
+- `POST /auth/register` - Register a new user
+- `POST /auth/login` - Login and get JWT token
+- `POST /auth/logout` - Logout
+
+### Tasks
+- `GET /api/{user_id}/tasks` - Get user's tasks
+- `POST /api/{user_id}/tasks` - Create a new task
+- `GET /api/{user_id}/tasks/{task_id}` - Get a specific task
+- `PUT /api/{user_id}/tasks/{task_id}` - Update a task
+- `PATCH /api/{user_id}/tasks/{task_id}/complete` - Toggle task completion
+- `DELETE /api/{user_id}/tasks/{task_id}` - Delete a task
+
+## Security
+
+- JWT-based authentication with expiration
+- Password hashing using bcrypt
+- Input validation using Pydantic
+- SQL injection protection via SQLModel ORM
+- CORS configured for secure cross-origin requests
+
+## Development Guidelines
+
+- Use consistent error handling across API endpoints
+- Follow the existing code style and naming conventions
+- Write tests for new functionality
+- Update documentation when adding new features
+- Use environment variables for configuration

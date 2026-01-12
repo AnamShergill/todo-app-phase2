@@ -11,7 +11,8 @@ from ..models.user_task_models import User
 from ..schemas.task_schemas import TaskDetailResponse
 
 # Configuration
-SECRET_KEY = "your-secret-key-here"  # In production, use environment variable
+import os
+SECRET_KEY = os.getenv("SECRET_KEY", "your-secret-key-here")  # Use SECRET_KEY environment variable
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
