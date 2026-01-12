@@ -9,12 +9,18 @@ from src.models.user_task_models import User, Task  # Import models to register 
 from contextlib import asynccontextmanager
 from src.database.session import engine
 from sqlmodel import SQLModel
+import logging
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Create database tables on startup
-    create_db_and_tables()
+    try:
+        # Create database tables on startup
+        create_db_and_tables()
+        logging.info("Database tables created successfully")
+    except Exception as e:
+        logging.error(f"Error creating database tables: {e}")
+        # Continue without failing the startup
     yield
     # Cleanup on shutdown if needed
 
