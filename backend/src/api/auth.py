@@ -17,7 +17,7 @@ ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
 # Password hashing
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+pwd_context = CryptContext(schemes=["argon2"], deprecated="auto")
 
 # JWT utilities
 def verify_password(plain_password, hashed_password):
@@ -39,15 +39,17 @@ def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
 def verify_token(token: str):
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        user_id: int = payload.get("sub")
-        if user_id is None:
+        user_id_str: str = payload.get("sub")
+        if user_id_str is None:
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
                 detail="Could not validate credentials",
                 headers={"WWW-Authenticate": "Bearer"},
             )
+        # Convert string user ID to integer
+        user_id = int(user_id_str)
         return user_id
-    except JWTError:
+    except (JWTError, ValueError, TypeError):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Could not validate credentials",
@@ -84,7 +86,7 @@ router = APIRouter(prefix="/auth")
 @router.post("/register", response_model=AuthResponse)
 async def register(user_data: UserRegister, db: Session = Depends(get_session)):
     # Check if user already exists
-    existing_user = db.exec(select(User).where(User.email == user_data.email)).first()
+    existing_user = db.execute(select(User).where(User.email == user_data.email)).scalar()
     if existing_user:
         raise HTTPException(
             status_code=status.HTTP_409_CONFLICT,
@@ -127,7 +129,7 @@ async def register(user_data: UserRegister, db: Session = Depends(get_session)):
 @router.post("/login", response_model=AuthResponse)
 async def login(user_data: UserLogin, db: Session = Depends(get_session)):
     # Find user by email
-    user = db.exec(select(User).where(User.email == user_data.email)).first()
+    user = db.execute(select(User).where(User.email == user_data.email)).scalar()
     if not user or not verify_password(user_data.password, user.password_hash):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,

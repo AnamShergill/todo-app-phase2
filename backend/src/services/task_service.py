@@ -49,19 +49,22 @@ class TaskService:
             statement = statement.order_by(Task.created_at.desc())
 
         statement = statement.offset(skip).limit(limit)
-        tasks = self.db_session.exec(statement).all()
+        result = self.db_session.execute(statement)
+        tasks = result.scalars().all()
         return tasks
 
     def get_task_by_id(self, user_id: int, task_id: int) -> Optional[Task]:
         """Get a specific task by ID for the specified user."""
         statement = select(Task).where(Task.id == task_id, Task.user_id == user_id)
-        task = self.db_session.exec(statement).first()
+        result = self.db_session.execute(statement)
+        task = result.scalar_one_or_none()
         return task
 
     def update_task(self, user_id: int, task_id: int, task_data: TaskUpdate) -> Optional[Task]:
         """Update a specific task for the specified user."""
         statement = select(Task).where(Task.id == task_id, Task.user_id == user_id)
-        task = self.db_session.exec(statement).first()
+        result = self.db_session.execute(statement)
+        task = result.scalar_one_or_none()
 
         if not task:
             return None
@@ -82,7 +85,8 @@ class TaskService:
     def update_task_completion(self, user_id: int, task_id: int, completion_data: TaskComplete) -> Optional[Task]:
         """Update the completion status of a specific task."""
         statement = select(Task).where(Task.id == task_id, Task.user_id == user_id)
-        task = self.db_session.exec(statement).first()
+        result = self.db_session.execute(statement)
+        task = result.scalar_one_or_none()
 
         if not task:
             return None
@@ -98,7 +102,8 @@ class TaskService:
     def delete_task(self, user_id: int, task_id: int) -> bool:
         """Delete a specific task for the specified user."""
         statement = select(Task).where(Task.id == task_id, Task.user_id == user_id)
-        task = self.db_session.exec(statement).first()
+        result = self.db_session.execute(statement)
+        task = result.scalar_one_or_none()
 
         if not task:
             return False
@@ -117,5 +122,6 @@ class TaskService:
             elif status == "pending":
                 statement = statement.where(Task.completed == False)
 
-        tasks = self.db_session.exec(statement).all()
+        result = self.db_session.execute(statement)
+        tasks = result.scalars().all()
         return len(tasks)
