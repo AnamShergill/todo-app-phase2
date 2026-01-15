@@ -3,7 +3,6 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from src.api.tasks import router as tasks_router
 from src.api.auth import router as auth_router
-from src.api.chatbot import router as chatbot_router
 from src.database.init_db import create_db_and_tables
 from src.models.user_task_models import User, Task  # Import models to register them
 from contextlib import asynccontextmanager
@@ -44,7 +43,6 @@ app.add_middleware(
 # Include API routers
 app.include_router(auth_router)
 app.include_router(tasks_router)
-app.include_router(chatbot_router)
 
 @app.get("/")
 def read_root():

@@ -50,7 +50,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setToken(result.token);
       setUser(result.user);
 
-      router.push('/dashboard');
+      router.push('/welcome');
     } catch (error: any) {
       if (error.message.includes('credentials')) {
         throw new Error(error.message || 'Login failed');
@@ -68,7 +68,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setToken(result.token);
       setUser(result.user);
 
-      router.push('/dashboard');
+      router.push('/welcome');
     } catch (error: any) {
       throw new Error(error.message || 'Registration failed');
     }
