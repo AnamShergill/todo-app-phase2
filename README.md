@@ -2,6 +2,8 @@
 
 TodoBoom is a modern full-stack todo application built with Next.js, FastAPI, Better Auth, and Neon PostgreSQL.
 
+<!-- Updated on $(date +%Y-%m-%d) - Changes: Removed chatbot, added welcome page, enhanced dashboard -->
+
 ## Tech Stack
 
 - **Frontend**: Next.js 14 (App Router, TypeScript, Tailwind CSS)
