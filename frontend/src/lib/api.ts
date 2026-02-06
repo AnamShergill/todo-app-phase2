@@ -10,9 +10,12 @@ const api = axios.create({
 // Request interceptor to add token to headers
 api.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('authToken');
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+    // Check if localStorage is available (to prevent SSR issues)
+    if (typeof window !== 'undefined' && window.localStorage) {
+      const token = localStorage.getItem('authToken');
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+      }
     }
     return config;
   },
@@ -25,11 +28,15 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response?.status === 401) {
-      // Token expired or invalid, redirect to login
-      localStorage.removeItem('authToken');
-      localStorage.removeItem('user');
-      window.location.href = '/login';
+    if (typeof window !== 'undefined' && window.localStorage) {
+      if (error.response?.status === 401) {
+        // Token expired or invalid, redirect to login
+        localStorage.removeItem('authToken');
+        localStorage.removeItem('user');
+        if (typeof window !== 'undefined') {
+          window.location.href = '/login';
+        }
+      }
     }
     return Promise.reject(error);
   }
