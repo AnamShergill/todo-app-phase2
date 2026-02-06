@@ -7,6 +7,10 @@ services:
   startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
   envVars:
   - key: SECRET_KEY
-    generateValue: true
+    value: 2df80a9a2e5581e96f8b45c0c57d9bb89ef0aab1cc1e075a98dfb2811a1c5bfc
   - key: DATABASE_URL
-    value: postgresql://<username>:<password>@<hostname>:<port>/<database_name>
+    fromDatabase:
+      name: todoboom-db
+      property: connectionString
+  - key: FRONTEND_URL
+    value: https://todo-app-phase2-two.vercel.app

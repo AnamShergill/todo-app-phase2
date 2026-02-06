@@ -12,7 +12,7 @@ from ..schemas.task_schemas import TaskDetailResponse
 
 # Configuration
 import os
-SECRET_KEY = os.getenv("SECRET_KEY", "your-secret-key-here")  # Use SECRET_KEY environment variable
+SECRET_KEY = os.getenv("SECRET_KEY", "your-very-secure-random-secret-key-here-for-local-development")  # Use SECRET_KEY environment variable in production
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
