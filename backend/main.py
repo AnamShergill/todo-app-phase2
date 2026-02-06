@@ -9,6 +9,7 @@ from contextlib import asynccontextmanager
 from src.database.session import engine
 from sqlmodel import SQLModel
 import logging
+import os
 
 
 @asynccontextmanager
