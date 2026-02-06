@@ -5,7 +5,7 @@ from typing import Optional
 import os
 
 # Configuration
-SECRET_KEY = os.getenv("SECRET_KEY", "your-secret-key-here")  # Use SECRET_KEY environment variable
+SECRET_KEY = os.getenv("SECRET_KEY", "2df80a9a2e5581e96f8b45c0c57d9bb89ef0aab1cc1e075a98dfb2811a1c5bfc")  # Use SECRET_KEY environment variable
 ALGORITHM = "HS256"
 
 security = HTTPBearer()

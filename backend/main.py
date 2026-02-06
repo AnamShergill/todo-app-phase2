@@ -36,10 +36,8 @@ app = FastAPI(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        os.getenv("FRONTEND_URL", "http://localhost:3000"),
+        os.getenv("FRONTEND_URL", "https://todo-app-phase2-two.vercel.app"),
         "https://todo-app-phase2-two.vercel.app",  # Your Vercel deployment
-        "http://localhost:3000",  # Local Next.js dev server
-        "http://localhost:3001",  # Alternative local dev server
     ],
     allow_credentials=True,
     allow_methods=["*"],

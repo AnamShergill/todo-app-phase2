@@ -5,21 +5,28 @@ const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8
 
 const api = axios.create({
   baseURL: API_BASE_URL,
+  timeout: 20000, // 20 seconds timeout to handle database connections
 });
 
 // Request interceptor to add token to headers
 api.interceptors.request.use(
   (config) => {
-    // Check if localStorage is available (to prevent SSR issues)
-    if (typeof window !== 'undefined' && window.localStorage) {
-      const token = localStorage.getItem('authToken');
-      if (token) {
-        config.headers.Authorization = `Bearer ${token}`;
+    // Only add token if we're in the browser environment and localStorage is available
+    if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+      try {
+        const token = localStorage.getItem('authToken');
+        if (token) {
+          config.headers.Authorization = `Bearer ${token}`;
+        }
+      } catch (e) {
+        // Ignore errors accessing localStorage
+        console.warn('Could not access localStorage:', e);
       }
     }
     return config;
   },
   (error) => {
+    console.error('Request error:', error);
     return Promise.reject(error);
   }
 );
@@ -28,16 +35,20 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (typeof window !== 'undefined' && window.localStorage) {
-      if (error.response?.status === 401) {
-        // Token expired or invalid, redirect to login
-        localStorage.removeItem('authToken');
-        localStorage.removeItem('user');
-        if (typeof window !== 'undefined') {
+    if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+      try {
+        if (error.response?.status === 401) {
+          // Token expired or invalid, redirect to login
+          localStorage.removeItem('authToken');
+          localStorage.removeItem('user');
           window.location.href = '/login';
         }
+      } catch (e) {
+        // Ignore errors accessing localStorage or redirecting
+        console.warn('Could not handle auth error:', e);
       }
     }
+    console.error('Response error:', error);
     return Promise.reject(error);
   }
 );
